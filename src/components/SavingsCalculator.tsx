@@ -7,6 +7,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Slider } from "./ui/slider";
 import { Button } from "./ui/button";
+import TreeIcon from "./icons/TreeIcon";
 
 const SavingsCalculator = () => {
   const [catsCount, setCatsCount] = useState(1);
@@ -193,6 +194,30 @@ const SavingsCalculator = () => {
                   <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">
                     {savings.treesSaved.toFixed(1)}
                   </p>
+                  <motion.div
+                    className="flex flex-wrap gap-1 mt-2 justify-center"
+                    key={savings.treesSaved} // Force re-render when treesSaved changes
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ staggerChildren: 0.05 }}
+                  >
+                    {Array.from({
+                      length: Math.min(Math.ceil(savings.treesSaved), 10),
+                    }).map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
+                      >
+                        <TreeIcon size={24} className="text-green-500" />
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </motion.div>
               </motion.div>
             </div>
