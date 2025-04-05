@@ -28,9 +28,9 @@ export default function About() {
 
   const teamMembers = [
     {
-      name: "Dr. Marie Laurent",
+      name: "Dr. Mark Laurent",
       role: "Founder & CEO",
-      bio: "With a PhD in Chemical Engineering, Marie developed Purrify after years of research into activated carbon technologies.",
+      bio: "With a PhD in Chemical Engineering, Mark developed Purrify after years of research into activated carbon technologies.",
       image:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
     },
@@ -44,7 +44,7 @@ export default function About() {
     {
       name: "Sophie Chen",
       role: "Environmental Scientist",
-      bio: "Sophie leads our sustainability initiatives, ensuring Purrify remains eco-friendly from production to packaging.",
+      bio: "Sophie leads our sustainability initiatives, ensuring Purrify remains friendly from production to packaging.",
       image:
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
     },
@@ -152,8 +152,8 @@ export default function About() {
               </p>
               <p className="text-lg text-muted-foreground">
                 Our journey began in a small Montreal laboratory where our
-                founder, Dr. Marie Laurent, was researching advanced activated
-                carbon technologies. As a cat owner herself, she realized the
+               team was researching advanced activated
+                carbon technologies. As cat owner ourselves, we realized the
                 potential for these innovations to revolutionize cat litter.
               </p>
               <p className="text-lg text-muted-foreground">
@@ -354,20 +354,7 @@ export default function About() {
                 <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-muted-foreground mb-4">
-                Subscribe for tips, promotions, and updates.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-md border border-border bg-background/80"
-                />
-                <Button>Subscribe</Button>
-              </div>
-            </div>
+            {/* Newsletter section removed */}
           </div>
           <div className="mt-12 pt-6 border-t border-border/50 text-center text-muted-foreground">
             <p>

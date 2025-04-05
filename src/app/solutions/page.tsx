@@ -348,7 +348,7 @@ export default function Solutions() {
               Your Cat's Litter Experience?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Try Purrify risk-free with our 30-day satisfaction guarantee.
+              Visit your local pet store and ask for Purrify.
             </p>
             <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
               Shop Now
@@ -417,20 +417,7 @@ export default function Solutions() {
                 <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-muted-foreground mb-4">
-                Subscribe for tips, promotions, and updates.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-md border border-border bg-background/80"
-                />
-                <Button>Subscribe</Button>
-              </div>
-            </div>
+            {/* Newsletter section removed */}
           </div>
           <div className="mt-12 pt-6 border-t border-border/50 text-center text-muted-foreground">
             <p>

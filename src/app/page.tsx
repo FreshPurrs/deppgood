@@ -87,12 +87,12 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -415,20 +415,7 @@ export default function Home() {
                 <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-muted-foreground mb-4">
-                Subscribe for tips, promotions, and updates.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-md border border-border bg-background/80"
-                />
-                <Button>Subscribe</Button>
-              </div>
-            </div>
+            {/* Newsletter section removed */}
           </div>
           <div className="mt-12 pt-6 border-t border-border/50 text-center text-muted-foreground">
             <p>
