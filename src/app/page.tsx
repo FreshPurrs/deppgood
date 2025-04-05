@@ -198,7 +198,8 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <SavingsCalculator />
+          {/* need further work on the calculations before enabling */}
+          {/* <SavingsCalculator /> */}
         </div>
       </section>
 
