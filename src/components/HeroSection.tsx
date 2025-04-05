@@ -40,10 +40,10 @@ export default function HeroSection() {
             eliminates odors, and saves you money. Your cat deserves the best.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
               Shop Now
             </Button>
-            <Button variant="outline" className="px-8 py-6 text-lg">
+            <Button variant="outline" className="hidden px-8 py-6 text-lg">
               Learn More
             </Button>
           </div>

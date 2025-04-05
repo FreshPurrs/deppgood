@@ -183,7 +183,7 @@ export default function Solutions() {
                   </ul>
                   <div className="pt-4">
                     <Button
-                      className={`bg-gradient-to-r ${solution.color} hover:opacity-90 text-white px-6 py-2`}
+                      className={`hidden bg-gradient-to-r ${solution.color} hover:opacity-90 text-white px-6 py-2`}
                     >
                       Learn More
                     </Button>
@@ -350,7 +350,7 @@ export default function Solutions() {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Try Purrify risk-free with our 30-day satisfaction guarantee.
             </p>
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
               Shop Now
             </Button>
           </motion.div>
@@ -366,7 +366,7 @@ export default function Solutions() {
                 Purrify.ca
               </h3>
               <p className="text-muted-foreground mb-4">
-                Revolutionizing cat litter since 2023. Made with love in
+                Revolutionizing cat litter since 2024. Made with love in
                 Montreal.
               </p>
             </div>
@@ -410,9 +410,11 @@ export default function Solutions() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2">
-                <li className="text-muted-foreground">Montreal, QC, Canada</li>
-                <li className="text-muted-foreground">info@purrify.ca</li>
-                <li className="text-muted-foreground">+1 (514) 555-1234</li>
+                <li className="text-muted-foreground">
+                  109-17680 Rue Charles, Mirabel, QC J7J 0T6
+                </li>
+                <li className="text-muted-foreground">hello@purrify.ca</li>
+                <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
             <div>

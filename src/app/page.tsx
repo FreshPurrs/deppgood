@@ -8,6 +8,8 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TestimonialSlider from "@/components/TestimonialSlider";
+import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function Home() {
   const fadeIn = {
@@ -76,6 +78,46 @@ export default function Home() {
       location: "Vancouver",
     },
   ];
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    emailjs
+      .send(
+        "service_i5c914v", // Replace with your EmailJS service ID
+        "template_chvt6zi", // Replace with your EmailJS template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: `Message: ${formData.message}\n\nSender Email: ${formData.email}`,
+        },
+        "b5f9jd_V0OJxCRWyf" // Replace with your EmailJS user ID (public key)
+      )
+      .then(
+        () => {
+          setSuccessMessage("Your message has been sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error("Failed to send message:", error);
+        }
+      )
+      .finally(() => setIsSubmitting(false));
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
@@ -205,10 +247,111 @@ export default function Home() {
               Join thousands of happy cat owners who've discovered the Purrify
               difference. Your cat will thank you.
             </p>
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
               Shop Now
             </Button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="w-full py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Have questions or feedback? We'd love to hear from you.
+            </p>
+          </motion.div>
+
+          <motion.form
+            className="max-w-2xl mx-auto space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onSubmit={handleSubmit}
+          >
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-muted-foreground mb-2"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Your name"
+                className="w-full px-4 py-2 rounded-md border border-border bg-background/80"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-muted-foreground mb-2"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Your email"
+                className="w-full px-4 py-2 rounded-md border border-border bg-background/80"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-muted-foreground mb-2"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                value={formData.message}
+                onChange={handleInputChange}
+                placeholder="Your message"
+                className="w-full px-4 py-2 rounded-md border border-border bg-background/80"
+                required
+              ></textarea>
+            </div>
+            <div className="text-center">
+              <Button
+                type="submit"
+                className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-3"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
+            </div>
+            {successMessage && (
+              <p className="text-center text-green-500 mt-4">
+                {successMessage}
+              </p>
+            )}
+          </motion.form>
         </div>
       </section>
 
@@ -221,7 +364,7 @@ export default function Home() {
                 Purrify.ca
               </h3>
               <p className="text-muted-foreground mb-4">
-                Revolutionizing cat litter since 2023. Made with love in
+                Revolutionizing cat litter since 2024. Made with love in
                 Montreal.
               </p>
             </div>
@@ -265,9 +408,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2">
-                <li className="text-muted-foreground">Montreal, QC, Canada</li>
-                <li className="text-muted-foreground">info@purrify.ca</li>
-                <li className="text-muted-foreground">+1 (514) 555-1234</li>
+                <li className="text-muted-foreground">
+                  109-17680 Rue Charles, Mirabel, QC J7J 0T6
+                </li>
+                <li className="text-muted-foreground">hello@purrify.ca</li>
+                <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
             <div>

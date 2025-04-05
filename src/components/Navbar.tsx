@@ -67,7 +67,7 @@ const Navbar = () => {
           </nav>
           <div className="flex items-center space-x-4">
             <ThemeSwitcher />
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white">
               Shop Now
             </Button>
           </div>
@@ -102,7 +102,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white w-full mt-4">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white w-full mt-4">
               Shop Now
             </Button>
           </nav>

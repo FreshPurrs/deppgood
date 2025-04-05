@@ -71,12 +71,12 @@ export default function Contact() {
     {
       icon: <Phone className="h-6 w-6 text-purple-500" />,
       title: "Phone Number",
-      details: "+1 (514) 555-1234"
+      details: "+1 438-931-7345"
     },
     {
       icon: <Mail className="h-6 w-6 text-purple-500" />,
       title: "Email Address",
-      details: "info@purrify.ca"
+      details: "hello@purrify.ca"
     },
     {
       icon: <Clock className="h-6 w-6 text-purple-500" />,
@@ -322,7 +322,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">Purrify.ca</h3>
-              <p className="text-muted-foreground mb-4">Revolutionizing cat litter since 2023. Made with love in Montreal.</p>
+              <p className="text-muted-foreground mb-4">Revolutionizing cat litter since 2024. Made with love in Montreal.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
@@ -336,9 +336,9 @@ export default function Contact() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2">
-                <li className="text-muted-foreground">Montreal, QC, Canada</li>
-                <li className="text-muted-foreground">info@purrify.ca</li>
-                <li className="text-muted-foreground">+1 (514) 555-1234</li>
+                <li className="text-muted-foreground">109-17680 Rue Charles, Mirabel, QC J7J 0T6</li>
+                <li className="text-muted-foreground">hello@purrify.ca</li>
+                <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
             <div>

@@ -287,7 +287,7 @@ export default function About() {
               Experience the difference our activated carbon technology can make
               for you and your feline friends.
             </p>
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
               Shop Now
             </Button>
           </motion.div>
@@ -303,7 +303,7 @@ export default function About() {
                 Purrify.ca
               </h3>
               <p className="text-muted-foreground mb-4">
-                Revolutionizing cat litter since 2023. Made with love in
+                Revolutionizing cat litter since 2024. Made with love in
                 Montreal.
               </p>
             </div>
@@ -347,9 +347,11 @@ export default function About() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2">
-                <li className="text-muted-foreground">Montreal, QC, Canada</li>
-                <li className="text-muted-foreground">info@purrify.ca</li>
-                <li className="text-muted-foreground">+1 (514) 555-1234</li>
+                <li className="text-muted-foreground">
+                  109-17680 Rue Charles, Mirabel, QC J7J 0T6
+                </li>
+                <li className="text-muted-foreground">hello@purrify.ca</li>
+                <li className="text-muted-foreground">+1 438-931-7345</li>
               </ul>
             </div>
             <div>
