@@ -325,7 +325,7 @@ export default function Contact() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 pointer-events-none z-10" />
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.7004533478703!2d-73.93257837487813!3d45.69698307705373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc8d5e500c00001%3A0xb33b26969f5f91e2!2zMTc2ODAgUnVlIENoYXJsZXMgIzEwOSwgTWlyYWJlbCwgUUMgSjdKIDFTMSDsupDrgpjri6Q!5e0!3m2!1sko!2skr!4v1743851596568!5m2!1sko!2skr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.7088543793966!2d-73.93139819999999!3d45.696814499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc8d5e500c00001%3A0xb33b26969f5f91e2!2s17680%20Rue%20Charles%20%23109%2C%20Mirabel%2C%20QC%20J7J%201S1!5e0!3m2!1sen!2sca!4v1743853738545!5m2!1sen!2sca"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -382,7 +382,7 @@ export default function Contact() {
                 <li>
                   <a
                     href="/blog"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="hidden text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Blog
                   </a>

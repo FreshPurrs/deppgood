@@ -151,10 +151,10 @@ export default function About() {
                 while reducing our collective impact on the planet.
               </p>
               <p className="text-lg text-muted-foreground">
-                Our journey began in a small Montreal laboratory where our
-               team was researching advanced activated
-                carbon technologies. As cat owner ourselves, we realized the
-                potential for these innovations to revolutionize cat litter.
+                Our journey began in a small Montreal laboratory where our team
+                was researching advanced activated carbon technologies. As cat
+                owner ourselves, we realized the potential for these innovations
+                to revolutionize cat litter.
               </p>
               <p className="text-lg text-muted-foreground">
                 Today, Purrify's activated carbon additive with its
@@ -215,7 +215,7 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section className="w-full py-20 bg-background">
+      <section className="hidden w-full py-20 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
@@ -337,7 +337,7 @@ export default function About() {
                 <li>
                   <a
                     href="/blog"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="hidden text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Blog
                   </a>

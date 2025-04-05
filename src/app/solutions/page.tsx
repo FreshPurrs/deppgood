@@ -400,7 +400,7 @@ export default function Solutions() {
                 <li>
                   <a
                     href="/blog"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="hidden text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Blog
                   </a>
