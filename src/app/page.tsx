@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import SavingsCalculator from "@/components/SavingsCalculator";
 import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import TestimonialSlider from "@/components/TestimonialSlider";
 
 export default function Home() {
   const fadeIn = {
@@ -81,60 +82,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-blue-500/10" />
-          <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 blur-3xl -z-10" />
-        </div>
-
-        <div className="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center gap-12">
-          <motion.div
-            className="flex-1 space-y-6"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
-                Revolutionize
-              </span>{" "}
-              Your
-              <br />
-              Cat Litter Experience
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-xl">
-              Purrify's activated carbon additive extends litter life by 50%,
-              eliminates odors, and saves you money. Your cat deserves the best.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-6 text-lg">
-                Shop Now
-              </Button>
-              <Button variant="outline" className="px-8 py-6 text-lg">
-                Learn More
-              </Button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="flex-1 relative"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative w-full h-[400px] md:h-[500px]">
-              <Image
-                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80"
-                alt="Happy cat with Purrify cat litter"
-                fill
-                className="object-cover rounded-2xl shadow-2xl"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-2xl" />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Features Section */}
       <section className="w-full py-20 bg-background">
@@ -232,32 +180,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                <Card className="h-full bg-background/60 backdrop-blur-md border border-border/50 shadow-lg">
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="text-3xl mb-4">"</div>
-                    <p className="text-lg mb-6 flex-grow italic">
-                      {testimonial.quote}
-                    </p>
-                    <div>
-                      <p className="font-semibold">{testimonial.author}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.location}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          <TestimonialSlider />
         </div>
       </section>
 
