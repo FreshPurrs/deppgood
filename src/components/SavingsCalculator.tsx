@@ -11,8 +11,9 @@ import TreeIcon from "./icons/TreeIcon";
 
 const SavingsCalculator = () => {
   const [catsCount, setCatsCount] = useState(1);
-  const [litterBoxesCount, setLitterBoxesCount] = useState(1);
-  const [litterChangesPerMonth, setLitterChangesPerMonth] = useState(4);
+  // Removed litterBoxesCount state
+  const [litterChangesPerMonth, setLitterChangesPerMonth] = useState(4); // Now represents TOTAL changes per month
+  const [isPremiumLitter, setIsPremiumLitter] = useState(false);
   const [savings, setSavings] = useState({
     moneySaved: 0,
     catFoodMonths: 0,
@@ -20,40 +21,60 @@ const SavingsCalculator = () => {
   });
 
   // Constants for calculations
-  const LITTER_COST_PER_CHANGE = 5; // Average cost in dollars
+  const LITTER_CHANGES_REDUCTION = 0.5; // 50% reduction in litter changes with Purrify
   const PURRIFY_COST_PER_MONTH = 10; // Cost of Purrify per month
-  const LITTER_CHANGES_REDUCTION = 0.5; // 50% reduction in litter changes
   const CAT_FOOD_COST_PER_MONTH = 30; // Average cost of cat food per month
-  const TREES_PER_YEAR_OF_LITTER = 0.2; // Trees saved per year of reduced litter
+  const TREES_PER_YEAR_OF_LITTER = 0.55; // Trees saved per annual litter change reduction (Adjusted to potentially reach 33 icons)
+  
+  // Cost ranges based on user feedback
+  const REGULAR_LITTER_COST: { [key: number]: number } = {
+    1: 20, // $15-$25 average $20 for one cat
+    2: 40, // $30-$50 average $40 for two cats
+    3: 60, // Estimated for three cats
+    4: 80, // Estimated for four cats
+    5: 100, // Estimated for five cats
+  };
+  
+  const PREMIUM_LITTER_COST: { [key: number]: number } = {
+    1: 35, // $30-$40 average $35 for one cat
+    2: 70, // Estimated for two cats
+    3: 105, // Estimated for three cats
+    4: 140, // Estimated for four cats
+    5: 175, // Estimated for five cats
+  };
 
   useEffect(() => {
     calculateSavings();
-  }, [catsCount, litterBoxesCount, litterChangesPerMonth]);
+  }, [catsCount, litterChangesPerMonth, isPremiumLitter]); // Removed litterBoxesCount dependency
 
   const calculateSavings = () => {
-    // Calculate monthly litter changes without Purrify
-    const monthlyChangesWithout = litterBoxesCount * litterChangesPerMonth;
-
-    // Calculate monthly litter changes with Purrify (50% reduction)
-    const monthlyChangesWith =
-      monthlyChangesWithout * (1 - LITTER_CHANGES_REDUCTION);
-
+    // Get monthly litter cost based on number of cats and litter type
+    const monthlyLitterCost = isPremiumLitter 
+      ? PREMIUM_LITTER_COST[Math.min(catsCount, 5)] 
+      : REGULAR_LITTER_COST[Math.min(catsCount, 5)];
+    
+    // Monthly cost without Purrify
+    const monthlyCostWithout = monthlyLitterCost;
+    
+    // Monthly cost with Purrify (50% reduction in litter changes = 50% reduction in litter cost)
+    // Plus the cost of Purrify itself
+    const monthlyCostWith = (monthlyLitterCost * (1 - LITTER_CHANGES_REDUCTION)) + PURRIFY_COST_PER_MONTH;
+    
     // Calculate monthly savings
-    const monthlySavingsLitter =
-      (monthlyChangesWithout - monthlyChangesWith) * LITTER_COST_PER_CHANGE;
-
-    // Calculate yearly savings (accounting for Purrify cost)
-    const yearlySavings =
-      monthlySavingsLitter * 12 - PURRIFY_COST_PER_MONTH * 12;
-
+    const monthlySavings = monthlyCostWithout - monthlyCostWith;
+    
+    // Calculate yearly savings
+    const yearlySavings = monthlySavings * 12;
+    
     // Calculate cat food months that could be purchased
     const catFoodMonths = yearlySavings / CAT_FOOD_COST_PER_MONTH;
-
-    // Calculate trees saved
-    const treesSaved =
-      (monthlyChangesWithout - monthlyChangesWith) *
-      12 *
-      TREES_PER_YEAR_OF_LITTER;
+    
+    // Calculate trees saved (based on reduced number of litter changes)
+    // monthlyChangesWithout = litterChangesPerMonth
+    // monthlyChangesWith = litterChangesPerMonth * (1 - LITTER_CHANGES_REDUCTION)
+    // Reduction = monthlyChangesWithout - monthlyChangesWith = litterChangesPerMonth * LITTER_CHANGES_REDUCTION
+    const annualChangeReduction = litterChangesPerMonth * LITTER_CHANGES_REDUCTION * 12;
+    const treesSaved = annualChangeReduction * TREES_PER_YEAR_OF_LITTER;
 
     setSavings({
       moneySaved: Math.max(0, yearlySavings),
@@ -127,40 +148,58 @@ const SavingsCalculator = () => {
                 />
               </div>
 
+              {/* Removed Litter Boxes Slider */}
+              
               <div className="space-y-3">
                 <Label
-                  htmlFor="litter-boxes"
-                  className="text-lg flex justify-between"
+                  htmlFor="premium-litter"
+                  className="text-lg flex items-center gap-2"
                 >
-                  <span>Number of Litter Boxes: {litterBoxesCount}</span>
+                  <input
+                    type="checkbox"
+                    id="premium-litter"
+                    checked={isPremiumLitter}
+                    onChange={(e) => setIsPremiumLitter(e.target.checked)}
+                    className="h-4 w-4"
+                  />
+                  <span>Premium Litter (${isPremiumLitter ? 
+                    PREMIUM_LITTER_COST[Math.min(catsCount, 5)] : 
+                    REGULAR_LITTER_COST[Math.min(catsCount, 5)]}/month)</span>
                 </Label>
-                <Slider
-                  id="litter-boxes"
-                  min={1}
-                  max={10}
-                  step={1}
-                  value={[litterBoxesCount]}
-                  onValueChange={(value) => setLitterBoxesCount(value[0])}
-                  className="py-2"
-                />
+                <p className="text-sm text-muted-foreground ml-6">
+                  {isPremiumLitter 
+                    ? "Premium or specialty litters (like biodegradable options)" 
+                    : "Standard clumping or non-clumping litter"}
+                </p>
               </div>
-
+              
               <div className="space-y-3">
-                <Label
+                 <Label
                   htmlFor="changes-per-month"
                   className="text-lg flex justify-between"
                 >
-                  <span>Litter Changes Per Month: {litterChangesPerMonth}</span>
+                  <span>Number of times you change your litter per month: {litterChangesPerMonth}</span>
                 </Label>
                 <Slider
                   id="changes-per-month"
                   min={1}
-                  max={10}
+                  max={10} // Adjust max as needed, maybe higher? Let's keep 10 for now.
                   step={1}
                   value={[litterChangesPerMonth]}
                   onValueChange={(value) => setLitterChangesPerMonth(value[0])}
                   className="py-2"
                 />
+              </div>
+
+              <div className="space-y-3">
+                <Label className="text-lg">
+                  <span>Estimated Monthly Litter Cost: ${isPremiumLitter ? 
+                    PREMIUM_LITTER_COST[Math.min(catsCount, 5)] : 
+                    REGULAR_LITTER_COST[Math.min(catsCount, 5)]}</span>
+                </Label>
+                <p className="text-sm text-muted-foreground">
+                  Based on average costs for {catsCount} cat{catsCount > 1 ? 's' : ''} using {isPremiumLitter ? 'premium' : 'regular'} litter.
+                </p>
               </div>
             </div>
 
@@ -182,7 +221,7 @@ const SavingsCalculator = () => {
 
                 <motion.div variants={itemVariants} className="space-y-2">
                   <h4 className="text-lg text-muted-foreground">
-                    Cat Food Months
+                    Months of Bonus Cat Food Paid For
                   </h4>
                   <p className="text-4xl font-bold bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
                     {savings.catFoodMonths.toFixed(1)}
@@ -190,36 +229,53 @@ const SavingsCalculator = () => {
                 </motion.div>
 
                 <motion.div variants={itemVariants} className="space-y-2">
-                  <h4 className="text-lg text-muted-foreground">Trees Saved</h4>
+                  <h4 className="text-lg text-muted-foreground">Trees Saved Per Year</h4>
                   <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">
                     {savings.treesSaved.toFixed(1)}
                   </p>
-                  <motion.div
-                    className="flex flex-wrap gap-1 mt-2 justify-center"
+                  <div // Changed outer motion.div to a regular div to contain the rows
+                    className="mt-2" 
                     key={savings.treesSaved} // Force re-render when treesSaved changes
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ staggerChildren: 0.05 }}
                   >
-                    {Array.from({
-                      length: Math.min(Math.ceil(savings.treesSaved), 10),
-                    }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 20,
-                        }}
-                      >
-                        <TreeIcon size={24} className="text-green-500" />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                    {(() => {
+                      const totalIcons = Math.min(Math.ceil(savings.treesSaved), 33);
+                      const iconsPerRow = 10;
+                      const rows = [];
+                      // Create arrays representing icons for each row
+                      for (let i = 0; i < totalIcons; i += iconsPerRow) {
+                        rows.push(Array.from({ length: Math.min(iconsPerRow, totalIcons - i) }));
+                      }
+
+                      // Map over the rows
+                      return rows.map((row, rowIndex) => (
+                        <motion.div // Each row is a motion.div
+                          key={rowIndex}
+                          className="flex flex-wrap gap-1 mt-1 justify-center" // Added mt-1 for spacing between rows
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: rowIndex * 0.1, staggerChildren: 0.05 }} // Stagger rows and icons within rows
+                        >
+                          {/* Map over icons within the current row */}
+                          {row.map((_, iconIndex) => (
+                            <motion.div // Each icon is a motion.div
+                              key={iconIndex}
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 20,
+                              }}
+                            >
+                              <TreeIcon size={24} className="text-green-500" />
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      ));
+                    })()}
+                  </div>
                 </motion.div>
-              </motion.div>
+              </motion.div> 
             </div>
           </motion.div>
 

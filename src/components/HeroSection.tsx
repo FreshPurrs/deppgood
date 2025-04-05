@@ -56,15 +56,15 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="relative w-full h-[400px] md:h-[500px]">
-            <video
-              src="https://storage.googleapis.com/tempo-public-assets/cat-video.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
+            <iframe
+              src="https://www.youtube.com/embed/2pJWoeHGCTs"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               className="w-full h-full object-cover rounded-2xl shadow-2xl"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-2xl" />
+            ></iframe>
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-2xl pointer-events-none" />
           </div>
         </motion.div>
       </div>
